@@ -80,6 +80,30 @@
         }
       }
     },
+    "/auth-tests/bearer": {
+      "post": {
+        "summary": "Authenticates with bearer auth",
+        "tags": [
+          "Auth Tests"
+        ],
+        "operationId": "testBearerAuth",
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Valid credentials"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
     "/blogs": {
       "post": {
         "summary": "Creates a blog",
@@ -276,6 +300,9 @@
       "type": "apiKey",
       "name": "api_key",
       "in": "query"
+    },
+    "bearer": {
+      "type": "http"
     }
   }
 }

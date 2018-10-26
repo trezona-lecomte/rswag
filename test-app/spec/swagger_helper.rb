@@ -53,6 +53,9 @@ RSpec.configure do |config|
           type: :apiKey,
           name: 'api_key',
           in: :query
+        },
+        bearer: {
+          type: :http
         }
       }
     }
