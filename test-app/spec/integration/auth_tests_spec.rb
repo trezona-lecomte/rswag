@@ -57,4 +57,22 @@ describe 'Auth Tests API', type: :request, swagger_doc: 'v1/swagger.json' do
       end
     end
   end
+
+  path '/auth-tests/bearer' do
+    post 'Authenticates with bearer auth' do
+      tags 'Auth Tests'
+      operationId 'testBearerAuth'
+      security [ bearer: [] ]
+
+      response '204', 'Valid credentials' do
+        let(:Authorization) { 'Bearer foobar' }
+        run_test!
+      end
+
+      response '401', 'Invalid credentials' do
+        let(:Authorization) { 'Bearer foobaz' }
+        run_test!
+      end
+    end
+  end
 end
