@@ -62,7 +62,7 @@ describe 'Auth Tests API', type: :request, swagger_doc: 'v1/swagger.json' do
     post 'Authenticates with bearer auth' do
       tags 'Auth Tests'
       operationId 'testBearerAuth'
-      security [ bearer: [] ]
+      security [ bearerAuth: [] ]
 
       response '204', 'Valid credentials' do
         let(:Authorization) { 'Bearer foobar' }

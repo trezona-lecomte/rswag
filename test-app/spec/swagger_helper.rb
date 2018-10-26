@@ -14,7 +14,7 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.json' => {
-      swagger: '2.0',
+      openapi: '3.0.0',
       info: {
         title: 'API V1',
         version: 'v1'
@@ -45,18 +45,25 @@ RSpec.configure do |config|
           required: [ 'id', 'title', 'content', 'thumbnail' ]
         }
       },
-      securityDefinitions: {
-        basic_auth: {
-          type: :basic
-        },
-        api_key: {
-          type: :apiKey,
-          name: 'api_key',
-          in: :query
-        },
-        bearer: {
-          type: :http
+      components: {
+        securitySchemes: {
+          basic_auth: {
+            type: :basic
+          },
+          api_key: {
+            type: :apiKey,
+            name: 'api_key',
+            in: :query
+          },
+          bearerAuth: {
+            type: :http,
+            scheme: :bearer,
+            bearerFormat: 'JWT'
+          }
         }
+      },
+      security: {
+        bearerAuth: []
       }
     }
   }
